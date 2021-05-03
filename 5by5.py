@@ -1,4 +1,5 @@
 import random
+import pygame
 
 def arcticSelector():
     num = random.randint(1, 4)
@@ -18,7 +19,7 @@ screen4 = arcticSelector()
 screen5 = arcticSelector()
 
 arcticZone = [screen1, screen2, screen3, screen4, screen5]
-print(arcticZone)
+
 
 def subArcticSelector():
     num = random.randint(1, 8)
@@ -46,7 +47,7 @@ screen9 = subArcticSelector()
 screen10 = subArcticSelector()
 
 subArcticZone = [screen6, screen7, screen8, screen9, screen10]
-print(subArcticZone)
+
 
 def temperateSelector():
     num = random.randint(1, 4)
@@ -66,7 +67,7 @@ screen14 = temperateSelector()
 screen15 = temperateSelector()
 
 temperateZone = [screen11, screen12, screen13, screen14, screen15]
-print(temperateZone)
+
 
 def subTropicalSelector():
     num = random.randint(1, 8)
@@ -94,7 +95,7 @@ screen19 = subTropicalSelector()
 screen20 = subTropicalSelector()
 
 subTropicalZone = [screen16, screen17, screen18, screen19, screen20]
-print(subTropicalZone)
+
 
 def tropicalSelector():
     num = random.randint(1, 4)
@@ -114,4 +115,44 @@ screen24 = tropicalSelector()
 screen25 = tropicalSelector()
 
 tropicalZone = [screen21, screen22, screen23, screen24, screen25]
-print(tropicalZone)
+
+GREEN = (124, 252, 0)
+
+FPS = 60
+
+player_character_image = pygame.image.load("assets/images/5by5chr.png")
+
+def draw_window(player):
+    WIN.fill((GREEN))
+    WIN.blit(player_character_image, (player.x, player.y)) 
+    pygame.display.update()
+
+
+WIDTH, HEIGHT = 900, 500
+WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("5 by 5")
+def main():
+    player = pygame.Rect(0, 200, 50, 50)
+    clock = pygame.time.Clock()
+    run = True
+    while run:
+        clock.tick(FPS)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+        
+        keys_pressed = pygame.key.get_pressed()
+        if keys_pressed[pygame.K_LEFT]:
+            player.x -= 5
+        if keys_pressed[pygame.K_RIGHT]:
+            player.x += 5
+        if keys_pressed[pygame.K_UP]:
+            player.y -= 5
+        if keys_pressed[pygame.K_DOWN]:
+            player.y += 5
+        draw_window(player)
+
+    pygame.quit()
+
+if __name__ == "__main__":
+    main()
