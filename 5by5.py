@@ -73,7 +73,39 @@ def tropicalSelector():
     elif num == 4:
         return("Tropical Mountains")
 
+class Screen:
+    def __init__ (self, number, biome):
+        self.number = number
+        self.biome = biome
 
+screen1 = Screen(1, arcticSelector())
+screen2 = Screen(2, arcticSelector())
+screen3 = Screen(3, arcticSelector())
+screen4 = Screen(4, arcticSelector())
+screen5 = Screen(5, arcticSelector())
+screen6 = Screen(6, subArcticSelector())
+screen7 = Screen(7, subArcticSelector())
+screen8 = Screen(8, subArcticSelector())
+screen9 = Screen(9, subArcticSelector())
+screen10 = Screen(10, subArcticSelector())
+screen11 = Screen(11, "Plains")
+screen12 = Screen(12, temperateSelector())
+screen13 = Screen(13, temperateSelector())
+screen14 = Screen(14, temperateSelector())
+screen15 = Screen(15, temperateSelector())
+screen16 = Screen(16, subTropicalSelector())
+screen17 = Screen(17, subTropicalSelector())
+screen18 = Screen(18, subTropicalSelector())
+screen19 = Screen(19, subTropicalSelector())
+screen20 = Screen(20, subTropicalSelector())
+screen21 = Screen(21, tropicalSelector())
+screen22 = Screen(22, tropicalSelector())
+screen23 = Screen(23, tropicalSelector())
+screen24 = Screen(24, tropicalSelector())
+screen25 = Screen(25, tropicalSelector())
+
+
+current_screen = 11
 
 GRASSGREEN = (0, 255, 0)
 FORESTGREEN = (0, 153, 0)
@@ -137,24 +169,65 @@ def plains():
     WIN.blit(resource3_image, (lake.x, lake.y))
 
 
-def draw_window (player, current_screen):
-    if current_screen == 11:
-        biome = "Plains"
-    elif current_screen < 6:
-        biome = arcticSelector()
-    elif current_screen < 11:
-        biome = subArcticSelector()
-    elif current_screen < 16:
-        biome = temperateSelector()
-    elif current_screen < 21:
-        biome = subTropicalSelector()
-    else:
-        biome = tropicalSelector()
+def draw_window (player):
+    global current_screen
+
+    if current_screen == screen1.number:
+        biome = screen1.biome
+    if current_screen == screen2.number:
+        biome = screen2.biome
+    if current_screen == screen3.number:
+        biome = screen3.biome
+    if current_screen == screen4.number:
+        biome = screen4.biome
+    if current_screen == screen5.number:
+        biome = screen5.biome
+    if current_screen == screen6.number:
+        biome = screen6.biome
+    if current_screen == screen7.number:
+        biome = screen7.biome
+    if current_screen == screen8.number:
+        biome = screen8.biome
+    if current_screen == screen9.number:
+        biome = screen9.biome
+    if current_screen == screen10.number:
+        biome = screen10.biome
+    if current_screen == screen11.number:
+        biome = screen11.biome
+    if current_screen == screen12.number:
+        biome = screen12.biome
+    if current_screen == screen13.number:
+        biome = screen13.biome
+    if current_screen == screen14.number:
+        biome = screen14.biome
+    if current_screen == screen15.number:
+        biome = screen15.biome
+    if current_screen == screen16.number:
+        biome = screen16.biome
+    if current_screen == screen17.number:
+        biome = screen17.biome
+    if current_screen == screen18.number:
+        biome = screen18.biome
+    if current_screen == screen19.number:
+        biome = screen19.biome
+    if current_screen == screen20.number:
+        biome = screen20.biome
+    if current_screen == screen21.number:
+        biome = screen21.biome
+    if current_screen == screen22.number:
+        biome = screen22.biome
+    if current_screen == screen23.number:
+        biome = screen23.biome
+    if current_screen == screen24.number:
+        biome = screen24.biome
+    if current_screen == screen25.number:
+        biome = screen25.biome
+    
     
     if biome == "Plains":
         WIN.fill(GRASSGREEN)
         plains()
-    elif biome == "Forest":
+    elif biome == "Temperate Forest":
         WIN.fill(FORESTGREEN)
     elif biome == "Hills":
         WIN.fill(STONEGREY)
@@ -185,8 +258,8 @@ def draw_window (player, current_screen):
 
     
 
-def player_handle_movement(player, keys_pressed, current_screen):
-    
+def player_handle_movement(player, keys_pressed):
+    global current_screen
 
     if keys_pressed[pygame.K_LEFT] and player.x-1 > 0:
         player.x -= 5
@@ -201,26 +274,25 @@ def player_handle_movement(player, keys_pressed, current_screen):
         if keys_pressed[pygame.K_LEFT] and player.x-1 < 0:
             player.x =850
             current_screen -= 1
-            
-            draw_window(player, current_screen)
+            draw_window(player)
+
     if current_screen !=5 and current_screen !=10 and current_screen !=15 and current_screen !=20 and current_screen !=25: 
         if keys_pressed[pygame.K_RIGHT] and player.x+1 > 850:
             current_screen += 1
-            
             player.x = 0
-            draw_window(player, current_screen)
+            draw_window(player)
+
     if current_screen > 5: 
         if keys_pressed[pygame.K_UP] and player.y-1 < 0:
             player.y = 450
             current_screen -= 5
-            
-            draw_window(player, current_screen)
+            draw_window(player)
+
     if current_screen < 21:
         if keys_pressed[pygame.K_DOWN] and player.y+1 > 450:
             player.y = 0
             current_screen += 5
-            
-            draw_window(player, current_screen)
+            draw_window(player)
             
     
 
@@ -230,9 +302,9 @@ def player_handle_movement(player, keys_pressed, current_screen):
 WIDTH, HEIGHT = 900, 500
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("5 by 5")
+
 def main():
     player = pygame.Rect(0, 200, 50, 50)
-    current_screen = 11
     clock = pygame.time.Clock()
     run = True
     while run:
@@ -241,8 +313,8 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
         keys_pressed = pygame.key.get_pressed()
-        draw_window(player, current_screen)
-        player_handle_movement(player, keys_pressed, current_screen) 
+        draw_window(player)
+        player_handle_movement(player, keys_pressed) 
         pygame.display.update()
     
     pygame.quit()
