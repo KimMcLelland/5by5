@@ -127,38 +127,42 @@ FPS = 60
 player_character_image = pygame.image.load("assets/images/5by5chr.png")
 mob1_image = pygame.image.load("assets/images/Sheep.png")
 mob2_image = pygame.image.load("assets/images/cow.png")
+mob3_image = pygame.image.load("assets/images/horse.png")
 resource1_image = pygame.image.load("assets/images/scrub.png")
 resource2_image = pygame.image.load("assets/images/quarry.png")
 resource3_image = pygame.image.load("assets/images/lake.png")
+resource4_image = pygame.image.load("assets/images/carrot.png")
+resource5_image = pygame.image.load("assets/images/potato.png")
+resource6_image = pygame.image.load("assets/images/wheat.png")
 
 def plains():
     cow = pygame.Rect(400, 100, 50, 50)
     sheep = pygame.Rect(700, 400, 50, 50)
-    quarry = pygame.Rect(200, 300, 50, 50)
-    shrub = pygame.Rect(400, 300, 50, 50)
+    quarry = pygame.Rect(800, 400, 50, 50)
+    shrub = pygame.Rect(300, 200, 50, 50)
     lake = pygame.Rect(600, 100, 50, 50)
 
     def handle_sheep_movement(sheep):
         num = random.randint(1, 4)
         if num == 1 and sheep.x-1: 
-            sheep.x -= 2
+            sheep.x -= 5
         if num == 2 and sheep.x+1 < 850: 
-            sheep.x += 2
+            sheep.x += 5
         if num == 3 and sheep.y-1 > 0: 
-            sheep.y -= 2
+            sheep.y -= 5
         if num == 4 and sheep.y+1 < 450:
-            sheep.y += 2
+            sheep.y += 5
 
     def handle_cow_movement(cow):
         num = random.randint(1, 4)
         if num == 1 and cow.x-1: 
-            cow.x -= 2
+            cow.x -= 5
         if num == 2 and cow.x+1 < 850: 
-            cow.x += 2
+            cow.x += 5
         if num == 3 and cow.y-1 > 0: 
-            cow.y -= 2
+            cow.y -= 5
         if num == 4 and cow.y+1 < 450:
-            cow.y += 2
+            cow.y += 5
 
     handle_sheep_movement(sheep)
     handle_cow_movement(cow)
