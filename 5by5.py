@@ -1,5 +1,8 @@
+from ctypes import Structure
+import os, sys
 import random
 import pygame
+from pygame.locals import *
 
 def arcticSelector():
     num = random.randint(1, 4)
@@ -104,10 +107,39 @@ screen23 = Screen(23, tropicalSelector())
 screen24 = Screen(24, tropicalSelector())
 screen25 = Screen(25, tropicalSelector())
 
-# lake = pygame.Rect(random.randint(0, 850), random.randint(0, 450), 50, 50)
 
 
 current_screen = 11
+structure = ""
+mob1 = 2
+mob2 = 4
+mob3 = 1
+mob4 = 5
+mob5 = 3
+mob6 = 4
+resource1 = 3
+resource2 = 3
+resource3 = 3
+resource4 = 2
+resource5 = 2
+resource6 = 2
+resource7 = 1
+resource8 = 1
+resource9 = 1
+resource10 = 3
+resource11 = 3
+resource12 = 3
+
+def three_equal_items():
+    num = random.randint(1, 3)
+    return num
+
+def three_unequal_items():
+    num = random.randint(1, 5)
+    return num
+
+
+
 
 GRASSGREEN = (0, 255, 0)
 FORESTGREEN = (0, 153, 0)
@@ -137,75 +169,178 @@ resource4_image = pygame.image.load("assets/images/carrot.png")
 resource5_image = pygame.image.load("assets/images/potato.png")
 resource6_image = pygame.image.load("assets/images/wheat.png")
 
-def random_vertical():
-    num = random.randint(0, 450)
-    return num
-
-def random_horizontal():
-    num = random.randint(0, 850)
-    return num
 
 
+def populate():
+    global resource1
+    global resource2
+    global resource3
+    global resource4
+    global resource5
+    global resource6
+    global resource7
+    global resource8
+    global resource9
+    global resource10
+    global resource11
+    global resource12
+    global mob1
+    global mob2
+    global mob3
+    global mob4
+    global mob5
+    global mob6
+
+    resource1 = three_equal_items()
+    resource2 = three_equal_items()
+    resource3 = three_equal_items()
+    resource4 = three_equal_items()
+    resource5 = three_equal_items()
+    resource6 = three_equal_items()
+    resource7 = three_equal_items()
+    resource8 = three_equal_items()
+    resource9 = three_equal_items()
+    resource10 = three_equal_items()
+    resource11 = three_equal_items()
+    resource12 = three_equal_items()
+    mob1 = three_unequal_items()
+    mob2 = three_unequal_items()
+    mob3 = three_unequal_items()
+    mob4 = three_unequal_items()
+    mob5 = three_unequal_items()
+    mob6 = three_unequal_items()
 
 
+def plains(WIN):
+    if mob1 == 1:
+        WIN.blit(mob3_image, (100, 100))
+    elif mob1 <4:
+        WIN.blit(mob2_image, (100, 100))
+    else: 
+        WIN.blit(mob1_image, (100, 100))
 
-def plains():
-    # global cow
-    # global sheep
-    carrot1 = pygame.Rect(50, 300, 50, 50)
-    carrot2 = pygame.Rect(100, 300, 50, 50)
-    carrot3 = pygame.Rect(150, 300, 50, 50)
-    potato1 = pygame.Rect(50, 400, 50, 50)
-    potato2 = pygame.Rect(100, 400, 50, 50)
-    potato3 = pygame.Rect(150, 400, 50, 50)
-    wheat1 = pygame.Rect(400, 50, 50, 50)
-    wheat2 = pygame.Rect(450, 50, 50, 50)
-    wheat3 = pygame.Rect(500, 50, 50, 50)
-    horse = pygame.Rect(800, 200, 50, 50)
-    cow = pygame.Rect(700, 50, 50, 50)
-    sheep = pygame.Rect(500, 200, 50, 50)
-    quarry = pygame.Rect(600, 400, 50, 50)
-    shrub = pygame.Rect(300, 200, 50, 50)
+    if mob2 == 1:
+        WIN.blit(mob3_image, (400, 100))
+    elif mob2 <4:
+        WIN.blit(mob2_image, (400, 100))
+    else: 
+        WIN.blit(mob1_image, (400, 100))
 
-    # def handle_sheep_movement(sheep):
-    #     num = random.randint(1, 4)
-    #     if num == 1 and sheep.x-1: 
-    #         sheep.x -= 5
-    #     if num == 2 and sheep.x+1 < 850: 
-    #         sheep.x += 5
-    #     if num == 3 and sheep.y-1 > 0: 
-    #         sheep.y -= 5
-    #     if num == 4 and sheep.y+1 < 450:
-    #         sheep.y += 5
+    if mob3 == 1:
+        WIN.blit(mob3_image, (700, 100))
+    elif mob3 <4:
+        WIN.blit(mob2_image, (700, 100))
+    else: 
+        WIN.blit(mob1_image, (700, 100))
 
-    # def handle_cow_movement(cow):
-    #     num = random.randint(1, 4)
-    #     if num == 1 and cow.x-1: 
-    #         cow.x -= 5
-    #     if num == 2 and cow.x+1 < 850: 
-    #         cow.x += 5
-    #     if num == 3 and cow.y-1 > 0: 
-    #         cow.y -= 5
-    #     if num == 4 and cow.y+1 < 450:
-    #         cow.y += 5
+    if mob4 == 1:
+        WIN.blit(mob3_image, (100, 325))
+    elif mob4 <4:
+        WIN.blit(mob2_image, (100, 325))
+    else: 
+        WIN.blit(mob1_image, (100, 325))
 
-    # handle_sheep_movement(sheep)
-    # handle_cow_movement(cow)
-    WIN.blit(mob3_image, (horse.x, horse.y))
-    WIN.blit(mob1_image, (sheep.x, sheep.y))
-    WIN.blit(mob2_image, (cow.x, cow.y))
-    WIN.blit(resource6_image, (wheat1.x, wheat1.y))
-    WIN.blit(resource6_image, (wheat2.x, wheat2.y))
-    WIN.blit(resource6_image, (wheat3.x, wheat3.y))
-    WIN.blit(resource4_image, (carrot1.x, carrot1.y))
-    WIN.blit(resource4_image, (carrot2.x, carrot2.y))
-    WIN.blit(resource4_image, (carrot3.x, carrot3.y))
-    WIN.blit(resource5_image, (potato1.x, potato1.y))
-    WIN.blit(resource5_image, (potato2.x, potato2.y))
-    WIN.blit(resource5_image, (potato3.x, potato3.y))
-    WIN.blit(resource1_image, (shrub.x, shrub.y))
-    WIN.blit(resource2_image, (quarry.x, quarry.y))
-    # WIN.blit(resource3_image, (lake.x, lake.y))
+    if mob5 == 1:
+        WIN.blit(mob3_image, (400, 325))
+    elif mob5 < 4:
+        WIN.blit(mob2_image, (400, 325))
+    else: 
+        WIN.blit(mob1_image, (400, 325))
+
+    if mob6 == 1:
+        WIN.blit(mob3_image, (700, 325))
+    elif mob6 < 4:
+        WIN.blit(mob2_image, (700, 325))
+    else: 
+        WIN.blit(mob1_image, (700, 325))
+
+    if resource1 == 1:
+        WIN.blit(resource4_image, (200, 25))
+    elif resource1 == 2:
+        WIN.blit(resource5_image, (200, 25))
+    else:
+        WIN.blit(resource6_image, (200, 25))
+
+    if resource2 == 1:
+        WIN.blit(resource4_image, (400, 25))
+    elif resource2 == 2:
+        WIN.blit(resource5_image, (400, 25))
+    else:
+        WIN.blit(resource6_image, (400, 25))
+
+    if resource3 == 1:
+        WIN.blit(resource4_image, (600, 25))
+    elif resource3 == 2:
+        WIN.blit(resource5_image, (600, 25))
+    else:
+        WIN.blit(resource6_image, (600, 25))
+
+    if resource4 == 1:
+        WIN.blit(resource4_image, (800, 25))
+    elif resource4 == 2:
+        WIN.blit(resource5_image, (800, 25))
+    else:
+        WIN.blit(resource6_image, (800, 25))
+
+    if resource5 == 1:
+        WIN.blit(resource4_image, (200, 250))
+    elif resource5 == 2:
+        WIN.blit(resource5_image, (200, 250))
+    else:
+        WIN.blit(resource6_image, (200, 250))
+
+    if resource6 == 1:
+        WIN.blit(resource4_image, (400, 250))
+    elif resource6 == 2:
+        WIN.blit(resource5_image, (400, 250))
+    else:
+        WIN.blit(resource6_image, (400, 250))
+
+    if resource7 == 1:
+        WIN.blit(resource4_image, (600, 250))
+    elif resource7 == 2:
+        WIN.blit(resource5_image, (600, 250))
+    else:
+        WIN.blit(resource6_image, (600, 250))
+
+    if resource8 == 1:
+        WIN.blit(resource4_image, (800, 250))
+    elif resource8 == 2:
+        WIN.blit(resource5_image, (800, 250))
+    else:
+        WIN.blit(resource6_image, (800, 250))   
+
+    if resource9 == 1:
+        WIN.blit(resource4_image, (200, 400))
+    elif resource9 == 2:
+        WIN.blit(resource5_image, (200, 400))
+    else:
+        WIN.blit(resource6_image, (200, 400))
+
+    if resource10 == 1:
+        WIN.blit(resource4_image, (400, 400))
+    elif resource10 == 2:
+        WIN.blit(resource5_image, (400, 400))
+    else:
+        WIN.blit(resource6_image, (400, 400))
+
+    if resource11 == 1:
+        WIN.blit(resource4_image, (600, 400))
+    elif resource11 == 2:
+        WIN.blit(resource5_image, (600, 400))
+    else:
+        WIN.blit(resource6_image, (600, 400))
+
+    if resource12 == 1:
+        WIN.blit(resource4_image, (800, 400))
+    elif resource12 == 2:
+        WIN.blit(resource5_image, (800, 400))
+    else:
+        WIN.blit(resource6_image, (800, 400))
+
+    if current_screen == 11:
+        WIN.blit(resource1_image, (200, 200))
+        WIN.blit(resource2_image, (800, 200))
 
 
     
@@ -265,7 +400,7 @@ def draw_window():
     
     if biome == "Plains":
         WIN.fill(GRASSGREEN)
-        plains()
+        plains(WIN)
     elif biome == "Temperate Forest":
         WIN.fill(FORESTGREEN)
     elif biome == "Hills":
@@ -309,21 +444,25 @@ def player_handle_movement(player, keys_pressed):
         if keys_pressed[pygame.K_LEFT] and player.x-1 < 0:
             player.x =850
             current_screen -= 1
+            populate()
             
     if current_screen !=5 and current_screen !=10 and current_screen !=15 and current_screen !=20 and current_screen !=25: 
         if keys_pressed[pygame.K_RIGHT] and player.x+1 > 850:
             current_screen += 1
             player.x = 0
+            populate()
            
     if current_screen > 5: 
         if keys_pressed[pygame.K_UP] and player.y-1 < 0:
             player.y = 450
             current_screen -= 5
+            populate()
             
     if current_screen < 21:
         if keys_pressed[pygame.K_DOWN] and player.y+1 > 450:
             player.y = 0
             current_screen += 5
+            populate()
             
     
 
