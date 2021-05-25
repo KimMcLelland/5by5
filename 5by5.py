@@ -110,32 +110,38 @@ screen25 = Screen(25, tropicalSelector())
 
 
 current_screen = 11
-structure = ""
-mob1 = 2
-mob2 = 4
-mob3 = 1
-mob4 = 5
-mob5 = 3
-mob6 = 4
-resource1 = 3
-resource2 = 3
-resource3 = 3
-resource4 = 2
-resource5 = 2
-resource6 = 2
-resource7 = 1
-resource8 = 1
-resource9 = 1
-resource10 = 3
-resource11 = 3
-resource12 = 3
 
-def three_equal_items():
-    num = random.randint(1, 3)
+class template:
+    def __init__ (self, x, y, selection):
+        self.x = x
+        self.y = y
+        self.selection = selection
+structure = template(400, 200, 1)
+mob1 = template(100, 100, 2)
+mob2 = template(400, 100, 4)
+mob3 = template(700, 100, 1)
+mob4 = template(100, 375, 5)
+mob5 = template(400, 375, 3)
+mob6 = template(700, 375, 4)
+resource1 = template(200, 25, 3)
+resource2 = template(400, 25, 3)
+resource3 = template(600, 25, 3)
+resource4 = template(800, 25, 2)
+resource5 = template(200, 250, 2)
+resource6 = template(400, 250, 2)
+resource7 = template(600, 250, 1)
+resource8 = template(800, 250, 1)
+resource9 = template(200, 400, 1)
+resource10 = template(400, 400, 3)
+resource11 = template(600, 400, 3)
+resource12 = template(800, 400, 3)
+
+def random_horizontal():
+    num = random.randint(0, 850)
     return num
 
-def three_unequal_items():
-    num = random.randint(1, 5)
+def random_vertical():
+    num = random.randint(0, 450)
     return num
 
 
@@ -191,152 +197,190 @@ def populate():
     global mob5
     global mob6
 
-    resource1 = three_equal_items()
-    resource2 = three_equal_items()
-    resource3 = three_equal_items()
-    resource4 = three_equal_items()
-    resource5 = three_equal_items()
-    resource6 = three_equal_items()
-    resource7 = three_equal_items()
-    resource8 = three_equal_items()
-    resource9 = three_equal_items()
-    resource10 = three_equal_items()
-    resource11 = three_equal_items()
-    resource12 = three_equal_items()
-    mob1 = three_unequal_items()
-    mob2 = three_unequal_items()
-    mob3 = three_unequal_items()
-    mob4 = three_unequal_items()
-    mob5 = three_unequal_items()
-    mob6 = three_unequal_items()
+    resource1.x = random_horizontal()
+    resource1.y = random_vertical()
+    resource2.x = random_horizontal()
+    resource2.y = random_vertical()
+    resource3.x = random_horizontal()
+    resource3.y = random_vertical()
+    resource4.x = random_horizontal()
+    resource4.y = random_vertical()
+    resource5.x = random_horizontal()
+    resource5.y = random_vertical()
+    resource6.x = random_horizontal()
+    resource6.y = random_vertical()
+    resource7.x = random_horizontal()
+    resource7.y = random_vertical()
+    resource8.x = random_horizontal()
+    resource8.y = random_vertical()
+    resource9.x = random_horizontal()
+    resource9.y = random_vertical()
+    resource10.x = random_horizontal()
+    resource10.y = random_vertical()
+    resource11.x = random_horizontal()
+    resource11.y = random_vertical()
+    resource12.x = random_horizontal()
+    resource12.y = random_vertical()
+    mob1.x = random_horizontal()
+    mob1.y = random_vertical()
+    mob2.x = random_horizontal()
+    mob2.y = random_vertical()
+    mob3.x = random_horizontal()
+    mob3.y = random_vertical()
+    mob4.x = random_horizontal()
+    mob4.y = random_vertical()
+    mob5.x = random_horizontal()
+    mob5.y = random_vertical()
+    mob6.x = random_horizontal()
+    mob6.y = random_vertical()
+    mob1.selection = random.randint(1, 6)
+    mob2.selection = random.randint(1, 6)
+    mob3.selection = random.randint(1, 6)
+    mob4.selection = random.randint(1, 6)
+    mob5.selection = random.randint(1, 6)
+    mob6.selection = random.randint(1, 6)
+    resource1.selection = random.randint(1, 3)
+    resource2.selection = random.randint(1, 3)
+    resource3.selection = random.randint(1, 3)
+    resource4.selection = random.randint(1, 3)
+    resource5.selection = random.randint(1, 3)
+    resource6.selection = random.randint(1, 3)
+    resource7.selection = random.randint(1, 3)
+    resource8.selection = random.randint(1, 3)
+    resource9.selection = random.randint(1, 3)
+    resource10.selection = random.randint(1, 3)
+    resource11.selection = random.randint(1, 3)
+    resource12.selection = random.randint(1, 3)
+
+    
 
 
 def plains(WIN):
-    if mob1 == 1:
-        WIN.blit(mob3_image, (100, 100))
-    elif mob1 <4:
-        WIN.blit(mob2_image, (100, 100))
+    if mob1.selection == 1:
+        WIN.blit(mob3_image, (mob1.x, mob1.y))
+    elif mob1.selection <4:
+        WIN.blit(mob2_image, (mob1.x, mob1.y))
     else: 
-        WIN.blit(mob1_image, (100, 100))
+        WIN.blit(mob1_image, (mob1.x, mob1.y))
 
-    if mob2 == 1:
-        WIN.blit(mob3_image, (400, 100))
-    elif mob2 <4:
-        WIN.blit(mob2_image, (400, 100))
+    if mob2.selection == 1:
+        WIN.blit(mob3_image, (mob2.x, mob2.y))
+    elif mob2.selection <4:
+        WIN.blit(mob2_image, (mob2.x, mob2.y))
     else: 
-        WIN.blit(mob1_image, (400, 100))
+        WIN.blit(mob1_image, (mob2.x, mob2.y))
 
-    if mob3 == 1:
-        WIN.blit(mob3_image, (700, 100))
-    elif mob3 <4:
-        WIN.blit(mob2_image, (700, 100))
+    if mob3.selection == 1:
+        WIN.blit(mob3_image, (mob3.x, mob3.y))
+    elif mob3.selection <4:
+        WIN.blit(mob2_image, (mob3.x, mob3.y))
     else: 
-        WIN.blit(mob1_image, (700, 100))
+        WIN.blit(mob1_image, (mob3.x, mob3.y))
 
-    if mob4 == 1:
-        WIN.blit(mob3_image, (100, 325))
-    elif mob4 <4:
-        WIN.blit(mob2_image, (100, 325))
+    if mob4.selection == 1:
+        WIN.blit(mob3_image, (mob4.x, mob4.y))
+    elif mob4.selection <4:
+        WIN.blit(mob2_image, (mob4.x, mob4.y))
     else: 
-        WIN.blit(mob1_image, (100, 325))
+        WIN.blit(mob1_image, (mob4.x, mob4.y))
 
-    if mob5 == 1:
-        WIN.blit(mob3_image, (400, 325))
-    elif mob5 < 4:
-        WIN.blit(mob2_image, (400, 325))
+    if mob5.selection == 1:
+        WIN.blit(mob3_image, (mob5.x, mob5.y))
+    elif mob5.selection < 4:
+        WIN.blit(mob2_image, (mob5.x, mob5.y))
     else: 
-        WIN.blit(mob1_image, (400, 325))
+        WIN.blit(mob1_image, (mob5.x, mob5.y))
 
-    if mob6 == 1:
-        WIN.blit(mob3_image, (700, 325))
-    elif mob6 < 4:
-        WIN.blit(mob2_image, (700, 325))
+    if mob6.selection == 1:
+        WIN.blit(mob3_image, (mob6.x, mob6.y))
+    elif mob6.selection < 4:
+        WIN.blit(mob2_image, (mob6.x, mob6.y))
     else: 
-        WIN.blit(mob1_image, (700, 325))
+        WIN.blit(mob1_image, (mob6.x, mob6.y))
 
-    if resource1 == 1:
-        WIN.blit(resource4_image, (200, 25))
-    elif resource1 == 2:
-        WIN.blit(resource5_image, (200, 25))
+    if resource1.selection == 1:
+        WIN.blit(resource4_image, (resource1.x, resource1.y))
+    elif resource1.selection == 2:
+        WIN.blit(resource5_image, (resource1.x, resource1.y))
     else:
-        WIN.blit(resource6_image, (200, 25))
+        WIN.blit(resource6_image, (resource1.x, resource1.y))
 
-    if resource2 == 1:
-        WIN.blit(resource4_image, (400, 25))
-    elif resource2 == 2:
-        WIN.blit(resource5_image, (400, 25))
+    if resource2.selection == 1:
+        WIN.blit(resource4_image, (resource2.x, resource2.y))
+    elif resource2.selection == 2:
+        WIN.blit(resource5_image, (resource2.x, resource2.y))
     else:
-        WIN.blit(resource6_image, (400, 25))
+        WIN.blit(resource6_image, (resource2.x, resource2.y))
 
-    if resource3 == 1:
-        WIN.blit(resource4_image, (600, 25))
-    elif resource3 == 2:
-        WIN.blit(resource5_image, (600, 25))
+    if resource3.selection == 1:
+        WIN.blit(resource4_image, (resource3.x, resource3.y))
+    elif resource3.selection == 2:
+        WIN.blit(resource5_image, (resource3.x, resource3.y))
     else:
-        WIN.blit(resource6_image, (600, 25))
+        WIN.blit(resource6_image, (resource3.x, resource3.y))
 
-    if resource4 == 1:
-        WIN.blit(resource4_image, (800, 25))
-    elif resource4 == 2:
-        WIN.blit(resource5_image, (800, 25))
+    if resource4.selection == 1:
+        WIN.blit(resource4_image, (resource4.x, resource4.y))
+    elif resource4.selection == 2:
+        WIN.blit(resource5_image, (resource4.x, resource4.y))
     else:
-        WIN.blit(resource6_image, (800, 25))
+        WIN.blit(resource6_image, (resource4.x, resource4.y))
 
-    if resource5 == 1:
-        WIN.blit(resource4_image, (200, 250))
-    elif resource5 == 2:
-        WIN.blit(resource5_image, (200, 250))
+    if resource5.selection == 1:
+        WIN.blit(resource4_image, (resource5.x, resource5.y))
+    elif resource5.selection == 2:
+        WIN.blit(resource5_image, (resource5.x, resource5.y))
     else:
-        WIN.blit(resource6_image, (200, 250))
+        WIN.blit(resource6_image, (resource5.x, resource5.y))
 
-    if resource6 == 1:
-        WIN.blit(resource4_image, (400, 250))
-    elif resource6 == 2:
-        WIN.blit(resource5_image, (400, 250))
+    if resource6.selection == 1:
+        WIN.blit(resource4_image, (resource6.x, resource6.y))
+    elif resource6.selection == 2:
+        WIN.blit(resource5_image, (resource6.x, resource6.y))
     else:
-        WIN.blit(resource6_image, (400, 250))
+        WIN.blit(resource6_image, (resource6.x, resource6.y))
 
-    if resource7 == 1:
-        WIN.blit(resource4_image, (600, 250))
-    elif resource7 == 2:
-        WIN.blit(resource5_image, (600, 250))
+    if resource7.selection == 1:
+        WIN.blit(resource4_image, (resource7.x, resource7.y))
+    elif resource7.selection == 2:
+        WIN.blit(resource5_image, (resource7.x, resource7.y))
     else:
-        WIN.blit(resource6_image, (600, 250))
+        WIN.blit(resource6_image, (resource7.x, resource7.y))
 
-    if resource8 == 1:
-        WIN.blit(resource4_image, (800, 250))
-    elif resource8 == 2:
-        WIN.blit(resource5_image, (800, 250))
+    if resource8.selection == 1:
+        WIN.blit(resource4_image, (resource8.x, resource8.y))
+    elif resource8.selection == 2:
+        WIN.blit(resource5_image, (resource8.x, resource8.y))
     else:
-        WIN.blit(resource6_image, (800, 250))   
+        WIN.blit(resource6_image, (resource8.x, resource8.y))   
 
-    if resource9 == 1:
-        WIN.blit(resource4_image, (200, 400))
-    elif resource9 == 2:
-        WIN.blit(resource5_image, (200, 400))
+    if resource9.selection == 1:
+        WIN.blit(resource4_image, (resource9.x, resource9.y))
+    elif resource9.selection == 2:
+        WIN.blit(resource5_image, (resource9.x, resource9.y))
     else:
-        WIN.blit(resource6_image, (200, 400))
+        WIN.blit(resource6_image, (resource9.x, resource9.y))
 
-    if resource10 == 1:
-        WIN.blit(resource4_image, (400, 400))
-    elif resource10 == 2:
-        WIN.blit(resource5_image, (400, 400))
+    if resource10.selection == 1:
+        WIN.blit(resource4_image, (resource10.x, resource10.y))
+    elif resource10.selection == 2:
+        WIN.blit(resource5_image, (resource10.x, resource10.y))
     else:
-        WIN.blit(resource6_image, (400, 400))
+        WIN.blit(resource6_image, (resource10.x, resource10.y))
 
-    if resource11 == 1:
-        WIN.blit(resource4_image, (600, 400))
-    elif resource11 == 2:
-        WIN.blit(resource5_image, (600, 400))
+    if resource11.selection == 1:
+        WIN.blit(resource4_image, (resource11.x, resource11.y))
+    elif resource11.selection == 2:
+        WIN.blit(resource5_image, (resource11.x, resource11.y))
     else:
-        WIN.blit(resource6_image, (600, 400))
+        WIN.blit(resource6_image, (resource11.x, resource11.y))
 
-    if resource12 == 1:
-        WIN.blit(resource4_image, (800, 400))
-    elif resource12 == 2:
-        WIN.blit(resource5_image, (800, 400))
+    if resource12.selection == 1:
+        WIN.blit(resource4_image, (resource12.x, resource12.y))
+    elif resource12.selection == 2:
+        WIN.blit(resource5_image, (resource12.x, resource12.y))
     else:
-        WIN.blit(resource6_image, (800, 400))
+        WIN.blit(resource6_image, (resource12.x, resource12.y))
 
     if current_screen == 11:
         WIN.blit(resource1_image, (200, 200))
